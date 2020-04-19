@@ -14,3 +14,17 @@ gcloud projects add-iam-policy-binding lisa-gcp-cloud2 --member "serviceAccount:
 gcloud iam service-accounts keys create lisa-gcp-cloud2.json --iam-account lisa-gcp-cloud2@lisa-gcp-cloud2.iam.gserviceaccount.com
 export GOOGLE_APPLICATION_CREDENTIAL="/Users/mayerlbp/GCP-2/3/terraform-google-gke/lisa-gcp-cloud2.json"
 
+# Run the following commands to set up GKE (Please input region, project ID and cluster name)
+terraform init
+terraform plan
+terraform apply
+
+# Set up kubernetes proxy
+kubectl proxy &
+
+#Get endpoints information
+curl http://localhost:8001/api/v1/namespaces/default/endpoints
+
+# Get nginx service external IP
+kubectl get service | grep nginx-ingress |awk '{print $4}'
+
