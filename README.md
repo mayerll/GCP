@@ -1,3 +1,3 @@
 # GCP
 
-Please ask for documents(Introduction-Lisa-Bopeng.pdf) from Ian for security issue.
+Please ask for document(Introduction-Lisa-Bopeng.pdf) from Ian for security issue.
