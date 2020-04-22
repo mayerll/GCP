@@ -12,7 +12,7 @@ gcloud init
 gcloud iam service-accounts create lisa-gcp-cloud2
 gcloud projects add-iam-policy-binding lisa-gcp-cloud2 --member "serviceAccount:lisa-gcp-cloud2@lisa-gcp-cloud2.iam.gserviceaccount.com" --role "roles/owner"
 gcloud iam service-accounts keys create lisa-gcp-cloud2.json --iam-account lisa-gcp-cloud2@lisa-gcp-cloud2.iam.gserviceaccount.com
-export GOOGLE_APPLICATION_CREDENTIAL="/Users/mayerlbp/GCP-2/3/terraform-google-gke/lisa-gcp-cloud2.json"
+export GOOGLE_APPLICATION_CREDENTIALS="/Users/mayerlbp/GCP-2/3/terraform-google-gke/lisa-gcp-cloud2.json"
 
 # Run the following commands to set up GKE (Please input region, project ID and cluster name)
 terraform init
