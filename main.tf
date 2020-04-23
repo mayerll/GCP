@@ -264,14 +264,15 @@ resource "kubernetes_cluster_role_binding" "user" {
 # DEPLOY A SAMPLE CHART
 # A chart repository is a location where packaged charts can be stored and shared. Define Bitnami Helm repository location,
 # so Helm can install the nginx chart.
+# https://hub.helm.sh/charts/bitnami/nginx
 # ---------------------------------------------------------------------------------------------------------------------
 
 resource "helm_release" "nginx" {
   depends_on = [google_container_node_pool.node_pool]
 
-  repository = "https://helm.nginx.com/stable"
-  name       = "nginx-ingress"
-  chart      = "nginx-ingress"
+  repository = "https://hub.helm.sh/charts/bitnami/nginx"
+  name       = "nginx"
+  chart      = "nginx"
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
