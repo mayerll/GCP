@@ -72,6 +72,11 @@ provider "helm" {
     token                  = data.template_file.access_token.rendered
     cluster_ca_certificate = data.template_file.cluster_ca_certificate.rendered
     load_config_file       = false
+
+
+    # client_certificate     = file("~/.kube/client-cert.pem")
+    # client_key             = file("~/.kube/client-key.pem")
+    # cluster_ca_certificate = file("~/.kube/cluster-ca-cert.pem")
   }
 }
 
@@ -133,7 +138,7 @@ resource "google_container_node_pool" "node_pool" {
   location = var.location
   cluster  = module.gke_cluster.name
 
-  initial_node_count = "1"
+  initial_node_count = "3"
 
   autoscaling {
     min_node_count = "1"
@@ -270,7 +275,7 @@ resource "kubernetes_cluster_role_binding" "user" {
 resource "helm_release" "nginx" {
   depends_on = [google_container_node_pool.node_pool]
 
-  repository = "https://hub.helm.sh/charts/bitnami/nginx"
+  repository = "https://charts.bitnami.com/bitnami"
   name       = "nginx"
   chart      = "nginx"
 }
