@@ -12,6 +12,14 @@ terraform {
 
 # ---------------------------------------------------------------------------------------------------------------------
 # PREPARE PROVIDERS
+#
+# Terraform is used to create, manage, and update infrastructure resources 
+# such as physical machines, VMs, network switches, containers, and more. 
+# Almost any infrastructure type can be represented as a resource in Terraform.
+# 
+# A provider is responsible for understanding API interactions and exposing resources. 
+# Providers generally are an IaaS (e.g. Alibaba Cloud, AWS, GCP, Microsoft Azure, OpenStack), 
+# PaaS (e.g. Heroku), or SaaS services (e.g. Terraform Cloud, DNSimple, Cloudflare).
 # ---------------------------------------------------------------------------------------------------------------------
 
 provider "google" {
@@ -73,15 +81,11 @@ provider "helm" {
     cluster_ca_certificate = data.template_file.cluster_ca_certificate.rendered
     load_config_file       = false
 
-
-    # client_certificate     = file("~/.kube/client-cert.pem")
-    # client_key             = file("~/.kube/client-key.pem")
-    # cluster_ca_certificate = file("~/.kube/cluster-ca-cert.pem")
   }
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
-# DEPLOY A PRIVATE CLUSTER IN GOOGLE CLOUD PLATFORM
+# DEPLOY A PRIVATE KUBERNETES CLUSTER IN GOOGLE CLOUD PLATFORM
 # ---------------------------------------------------------------------------------------------------------------------
 
 module "gke_cluster" {
@@ -271,6 +275,9 @@ resource "kubernetes_cluster_role_binding" "user" {
 # so Helm can install the nginx chart.
 # https://hub.helm.sh/charts/bitnami/nginx
 # ---------------------------------------------------------------------------------------------------------------------
+
+
+# helm install -name nginx -f ./values.yaml . 
 
 resource "helm_release" "nginx" {
   depends_on = [google_container_node_pool.node_pool]
