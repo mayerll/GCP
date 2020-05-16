@@ -142,17 +142,7 @@ resource "google_container_node_pool" "node_pool" {
   location = var.location
   cluster  = module.gke_cluster.name
 
-  initial_node_count = "3"
-
-  autoscaling {
-    min_node_count = "1"
-    max_node_count = "500"
-  }
-
-  management {
-    auto_repair  = "true"
-    auto_upgrade = "true"
-  }
+  initial_node_count = "1"
 
   node_config {
     image_type   = "COS"
@@ -188,6 +178,11 @@ resource "google_container_node_pool" "node_pool" {
     create = "30m"
     update = "30m"
     delete = "30m"
+  }
+
+  upgrade_settings {
+    max_surge       = "1"
+    max_unavailable = "1"
   }
 }
 
