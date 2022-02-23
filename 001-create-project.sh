@@ -9,10 +9,10 @@ gcloud projects create $project_id
 gcloud init
 
 # Create credential (Please replace my account and project ID to yours)
-gcloud iam service-accounts create thinkdataworks
-gcloud projects add-iam-policy-binding thinkdataworks --member "serviceAccount:thinkdataworks@thinkdataworks.iam.gserviceaccount.com" --role "roles/owner"
-gcloud iam service-accounts keys create thinkdataworks.json --iam-account thinkdataworks@thinkdataworks.iam.gserviceaccount.com
-export GOOGLE_APPLICATION_CREDENTIALS="/Users/mayerlbp/thinkdata-gcp/GCP/thinkdataworks.json"
+gcloud iam service-accounts create datapipeline
+gcloud projects add-iam-policy-binding datapipeline --member "serviceAccount:datapipeline@datapipeline.iam.gserviceaccount.com" --role "roles/owner"
+gcloud iam service-accounts keys create datapipeline.json --iam-account datapipeline@datapipeline.iam.gserviceaccount.com
+export GOOGLE_APPLICATION_CREDENTIALS="/Users/mayerlbp/datapipeline-gcp/GCP/datapipeline.json"
 
 # Run the following commands to set up GKE (Please input region, project ID and cluster name)
 terraform init
